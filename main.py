@@ -1,10 +1,28 @@
-from flask import Flask
+from flask import Flask, request 
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
+form = """
+<!DOCTYPE html>
+<html>
+  <body>
+    <form action="/hello">
+      <label for="first-name">First Name:</label>
+      <input type="text" id="first-name" name="first_name" />
+      <input type="submit">
+    </form>
+  </body>
+</html>
+"""
+
 @app.route("/")
 def index():
-  return "Hello World"
+  return form
 
-app.run()
+# @app.route("/hello")
+# def hello():
+#   first_name = request.args.get("first_name")
+#   return "<h1>Hello, " + first_name + "</h1>"
+
+  app.run()
