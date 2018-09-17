@@ -7,7 +7,7 @@ form = """
 <!DOCTYPE html>
 <html>
   <body>
-    <form action="/hello">
+    <form action="/hello" method="post">
       <label for="first-name">First Name:</label>
       <input type="text" id="first-name" name="first_name" />
       <input type="submit">
@@ -20,9 +20,9 @@ form = """
 def index():
   return form
 
-# @app.route("/hello")
-# def hello():
-#   first_name = request.args.get("first_name")
-#   return "<h1>Hello, " + first_name + "</h1>"
+@app.route("/hello", methods = ["POST"])
+def hello():
+  first_name = request.form["first_name"]
+  return "<h1>Hello, " + first_name + "</h1>"
 
-  app.run()
+app.run()
